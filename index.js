@@ -12,7 +12,15 @@ const port = 3000;
 app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({extended : true}));
 
+//create user defined middlewear
 
+function myfunc(req,res,next){
+    console.log("request method : " + req.method);
+    console.log("request url : "+req.url);
+    next();
+}
+
+app.use(myfunc);
 
 app.post("/submit",(req,res)=>{
    console.log(req.body);
